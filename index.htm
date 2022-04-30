@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment3</title>
+</head>
+
+<body>
+
+    <div id="FromDiv">
+        <div>
+            <label>Start Location: <input type="text" id="start" /></label>
+            <label>End Location: <input type="text" id="dest" /></label>
+            <label>Non-stop?<input type="checkbox" id="stops" /></label>
+            <button onclick="searchFlights()">Go!</button>
+        </div>
+
+        <div id="result"></div>
+
+        <br>
+        <center>
+            <p>Fatima © 2022</p>
+        </center>
+
+    </div>
+
+
+
+
+
+
+    <script>
+
+
+
+        function searchFlights() {
+            var firstInput = document.getElementById("start").value;
+            var SecondInput = document.getElementById("dest").value;
+
+            var req1 = new XMLHttpRequest();
+            req1.open("GET", "flightsCo.json", true);
+            req1.send("");
+
+            req1.onreadystatechange = function () {
+                if (req1.readyState == 4 && req1.status == 200) {
+                    returned_data = req1.responseText;
+                    let myObj = JSON.parse(returned_data);
+
+
+
+                    if (myObj[SecondInput]) {
+                        /** will return its value if exist */
+
+                        let checkbox = document.getElementById("stops");
+                        let LineOne = "Flights from " + firstInput + " To " + SecondInput + "";
+                        // document.writeln("<h1>" + LineOne + "</h1>");
+                        // document.writeln("<br><br>");
+                        document.getElementById("result").innerHTML = "";
+                        document.getElementById("result").innerHTML += "<h1>" + LineOne + "</h1> <br>";
+
+
+                        for (let i = 0; i < myObj[SecondInput]["flights"].length; i++) {
+
+                            if ((checkbox.checked == 1)) {
+                                if ((myObj[SecondInput]["flights"][i]["stops"] == 0)) {
+                                    document.getElementById("result").innerHTML += ("$" + myObj[SecondInput]["flights"][i]["price"]);
+                                    document.getElementById("result").innerHTML += (" from " + myObj[SecondInput]["flights"][i]["carrier"]);
+                                    document.getElementById("result").innerHTML += (" with " + myObj[SecondInput]["flights"][i]["stops"] + " stops" + "<br>");
+                                }
+                            }
+
+                            else {
+                                document.getElementById("result").innerHTML += ("$" + myObj[SecondInput]["flights"][i]["price"]);
+                                document.getElementById("result").innerHTML += (" from " + myObj[SecondInput]["flights"][i]["carrier"]);
+                                document.getElementById("result").innerHTML += (" with " + myObj[SecondInput]["flights"][i]["stops"] + " stops" + "<br>");
+                            }
+
+                        }
+
+                    } else {
+                        document.getElementById("result").innerHTML = ("<h1>This " + SecondInput + " End Location Does Not Exist! Try Again.");
+                    }
+                }
+
+            }
+
+
+        }
+
+
+
+    </script>
+</body>
+
+</html>

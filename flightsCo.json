@@ -1,0 +1,52 @@
+{
+  "Amman": {
+    "start": "Abu Dhabi",
+    "flights": [
+      {
+        "carrier": "Etihad airways",
+        "price": 1450,
+        "stops": 0
+      },
+      {
+        "carrier": "Royal jordanian",
+        "price": 1300,
+        "stops": 0
+      },
+      {
+        "carrier": "Gulf air",
+        "price": 1190,
+        "stops": 2
+      }
+    ]
+  },
+  "Cairo": {
+    "start": "Abu Dhabi",
+    "flights": [
+      {
+        "carrier": "British airways",
+        "price": 2500,
+        "stops": 2
+      },
+      {
+        "carrier": "Air egypt",
+        "price": 1562,
+        "stops": 0
+      },
+      {
+        "carrier": "Etihad airways",
+        "price": 1750,
+        "stops": 0
+      },
+      {
+        "carrier": "Gulf air",
+        "price": 1625,
+        "stops": 2
+      },
+      {
+        "carrier": "KLM",
+        "price": 1458,
+        "stops": 1
+      }
+    ]
+  }
+}
